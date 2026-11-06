@@ -49,3 +49,50 @@ input,
 select {
   font: inherit;
 }
+
+/* Botões do site: classes globais, usadas em várias páginas.
+   Uso: <button className="botao">  ou  <Link className="botao botao-secundario"> */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: var(--vermelho);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.botao:hover:not(:disabled) {
+  background: var(--vermelho-escuro);
+}
+
+.botao:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.botao-secundario {
+  background: transparent;
+  color: var(--texto);
+  border-color: var(--borda);
+}
+
+.botao-secundario:hover:not(:disabled) {
+  background: transparent;
+  border-color: var(--texto);
+}
+
+.botao-perigo {
+  background: transparent;
+  color: var(--vermelho);
+  border-color: var(--vermelho);
+}
+
+.botao-perigo:hover:not(:disabled) {
+  background: var(--vermelho);
+  color: #fff;
+}
