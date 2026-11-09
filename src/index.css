@@ -1,30 +1,60 @@
-/* Estilos globais: variáveis de cor e reset. O resto fica em CSS Modules. */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800&display=swap");
+
+/* ===== Variáveis (globais de propósito: atravessam os módulos) ===== */
 :root {
-  --vermelho: #e3350d;
-  --vermelho-escuro: #b8280a;
-  --azul: #3b4cca;
-  --amarelo: #ffcb05;
-  --texto: #1d2230;
-  --texto-suave: #5b6275;
-  --fundo: #f3f4f8;
-  --card: #ffffff;
-  --borda: #e2e5ee;
-  --sombra: 0 2px 10px rgba(29, 34, 48, 0.08);
-  --raio: 14px;
+  /* cores da Pokédex */
+  --cor-principal: #dc0a2d;
+  --cor-principal-hover: #a8001c;
+  --cor-principal-escura: #7a0014;
+  --cor-secundaria: #3b4cca;
+  --cor-secundaria-escura: #232f8f;
+  --cor-destaque: #ffde00;
+  --cor-destaque-escura: #b3a125;
+
+  /* telas e cartas */
+  --cor-fundo: #e8f1f8;
+  --cor-card: #fffdf2;
+  --cor-tela: #9bd4a6;
+  --cor-texto: #1a1a2e;
+  --cor-texto-suave: #4a5068;
+  --cor-borda: #1a1a2e;
+
+  /* ações */
+  --cor-editar: #f7a51b;
+  --cor-editar-hover: #d98a00;
+  --cor-deletar: #e3350d;
+  --cor-deletar-hover: #b52a09;
+  --cor-sucesso: #3fa34d;
+  --cor-erro-fundo: #ffe3e3;
+  --cor-erro-borda: #e3350d;
+  --cor-erro-texto: #9b1c00;
+
+  /* fontes e formas */
+  --fonte-titulo: "Press Start 2P", monospace;
+  --fonte-texto: "Nunito", "Segoe UI", sans-serif;
+  --raio: 16px;
+  --borda: 3px solid var(--cor-borda);
+  --sombra: 6px 6px 0 var(--cor-borda);
+  --sombra-pequena: 3px 3px 0 var(--cor-borda);
 }
 
-*,
-*::before,
-*::after {
+/* ===== Reset e base ===== */
+* {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
-  color: var(--texto);
-  background: var(--fundo);
-  line-height: 1.5;
+  min-width: 1200px;
+  font-family: var(--fonte-texto);
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+  /* padrão de pokébolas no fundo */
+  background-image:
+    radial-gradient(circle at center, transparent 0 7px, rgba(59, 76, 202, 0.12) 7px 11px, transparent 11px 22px, rgba(59, 76, 202, 0.12) 22px 25px, transparent 25px),
+    radial-gradient(circle at center, transparent 0 7px, rgba(220, 10, 45, 0.1) 7px 11px, transparent 11px 22px, rgba(220, 10, 45, 0.1) 22px 25px, transparent 25px);
+  background-size: 140px 140px;
+  background-position: 0 0, 70px 70px;
 }
 
 h1,
@@ -34,65 +64,14 @@ p {
   margin: 0;
 }
 
-h1,
-h2,
-h3 {
-  line-height: 1.2;
-}
-
-img {
-  max-width: 100%;
+h1 {
+  font-family: var(--fonte-titulo);
+  font-weight: 400;
+  line-height: 1.4;
 }
 
 button,
 input,
 select {
-  font: inherit;
-}
-
-/* Botões do site: classes globais, usadas em várias páginas.
-   Uso: <button className="botao">  ou  <Link className="botao botao-secundario"> */
-.botao {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 18px;
-  border: 2px solid transparent;
-  border-radius: 999px;
-  background: var(--vermelho);
-  color: #fff;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.botao:hover:not(:disabled) {
-  background: var(--vermelho-escuro);
-}
-
-.botao:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.botao-secundario {
-  background: transparent;
-  color: var(--texto);
-  border-color: var(--borda);
-}
-
-.botao-secundario:hover:not(:disabled) {
-  background: transparent;
-  border-color: var(--texto);
-}
-
-.botao-perigo {
-  background: transparent;
-  color: var(--vermelho);
-  border-color: var(--vermelho);
-}
-
-.botao-perigo:hover:not(:disabled) {
-  background: var(--vermelho);
-  color: #fff;
+  font-family: inherit;
 }

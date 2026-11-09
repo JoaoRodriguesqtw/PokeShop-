@@ -1,0 +1,81 @@
+/* topo da Pokédex: vermelho com a faixa preta embaixo */
+.navbar {
+  background: linear-gradient(to bottom, var(--cor-principal) 0 85%, var(--cor-principal-escura) 85% 100%);
+  border-bottom: 6px solid var(--cor-borda);
+}
+
+.container {
+  width: 1100px;
+  margin: 0 auto;
+  padding: 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* logo com a "lente" azul da Pokédex */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--fonte-titulo);
+  font-size: 1.3rem;
+  color: var(--cor-destaque);
+  text-decoration: none;
+  text-shadow:
+    3px 3px 0 var(--cor-secundaria-escura),
+    -2px -2px 0 var(--cor-secundaria-escura),
+    2px -2px 0 var(--cor-secundaria-escura),
+    -2px 2px 0 var(--cor-secundaria-escura);
+}
+
+.logo::before {
+  content: "";
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #bfe9ff 0 15%, #29a8e6 30%, #0b5d9c 100%);
+  border: 5px solid #fff;
+  box-shadow: 0 0 0 3px var(--cor-borda);
+}
+
+.links {
+  display: flex;
+  gap: 10px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-weight: 800;
+  color: var(--cor-texto);
+  text-decoration: none;
+  background: #fff;
+  border: var(--borda);
+  border-radius: 999px;
+  box-shadow: var(--sombra-pequena);
+  transition: transform 0.15s, background 0.15s;
+}
+
+.link:hover {
+  background: var(--cor-destaque);
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--cor-borda);
+}
+
+/* contador do carrinho em forma de mini pokébola */
+.contador {
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #fff;
+  background: var(--cor-principal);
+  border: 2px solid var(--cor-borda);
+  border-radius: 999px;
+}

@@ -1,0 +1,113 @@
+.titulo {
+  display: inline-block;
+  margin-bottom: 24px;
+  padding: 14px 22px;
+  font-size: 1.4rem;
+  color: #fff;
+  background: var(--cor-secundaria);
+  border: var(--borda);
+  border-radius: 12px;
+  box-shadow: var(--sombra-pequena);
+}
+
+.vazio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 48px 0;
+  font-weight: 700;
+  text-align: center;
+  color: var(--cor-texto-suave);
+}
+
+.botao {
+  padding: 14px 26px;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+  background: var(--cor-principal);
+  border: var(--borda);
+  border-radius: 999px;
+  box-shadow: var(--sombra-pequena);
+}
+
+.botao:hover {
+  background: var(--cor-principal-hover);
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* cada compra como um registro da Pokédex */
+.compra {
+  padding: 20px 24px;
+  background: var(--cor-card);
+  border: var(--borda);
+  border-left: 18px solid var(--cor-principal);
+  border-radius: 14px;
+  box-shadow: var(--sombra);
+}
+
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.data {
+  font-weight: 800;
+}
+
+.total {
+  padding: 6px 12px;
+  font-family: var(--fonte-titulo);
+  font-size: 0.75rem;
+  background: var(--cor-destaque);
+  border: 2px solid var(--cor-borda);
+  border-radius: 8px;
+}
+
+.cliente {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--cor-texto-suave);
+}
+
+.itens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.itemCompra {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px 4px 4px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: var(--cor-tela);
+  border: 2px solid var(--cor-borda);
+  border-radius: 999px;
+}
+
+.imagem {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  background: #fff;
+  border: 2px solid var(--cor-borda);
+  border-radius: 50%;
+}
+
+.nome {
+  text-transform: capitalize;
+}

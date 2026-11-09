@@ -1,0 +1,31 @@
+/* parte de baixo da pokébola: faixa preta e base branca */
+.rodape {
+  position: relative;
+  padding: 28px 0 22px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--cor-texto);
+  background: #fff;
+  border-top: 8px solid var(--cor-borda);
+}
+
+/* o "botão" central da pokébola */
+.rodape::before {
+  content: "";
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  margin-left: -18px;
+  background: #fff;
+  border: 6px solid var(--cor-borda);
+  border-radius: 50%;
+}
+
+.fonte {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+}

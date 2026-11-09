@@ -1,0 +1,105 @@
+.pagamento {
+  width: 560px;
+  margin: 0 auto;
+}
+
+.titulo {
+  margin-bottom: 24px;
+  font-size: 1.4rem;
+  text-align: center;
+  color: var(--cor-principal);
+  text-shadow: 3px 3px 0 var(--cor-borda);
+}
+
+.vazio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 48px 0;
+  font-weight: 700;
+  text-align: center;
+  color: var(--cor-texto-suave);
+}
+
+/* caixa como a Pokédex: borda vermelha grossa */
+.caixa {
+  padding: 28px;
+  background: var(--cor-card);
+  border: 4px solid var(--cor-borda);
+  border-top: 28px solid var(--cor-principal);
+  border-radius: 20px;
+  box-shadow: 8px 8px 0 var(--cor-borda);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cor-texto);
+  background: #fff;
+  border: var(--borda);
+  border-radius: 10px;
+  outline: none;
+}
+
+.input:focus {
+  background: #fffbe0;
+  box-shadow: var(--sombra-pequena);
+}
+
+.erro {
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--cor-erro-texto);
+  background: var(--cor-erro-fundo);
+  border: 2px solid var(--cor-borda);
+  border-left: 8px solid var(--cor-erro-borda);
+  border-radius: 8px;
+}
+
+.total {
+  padding: 14px;
+  font-family: var(--fonte-titulo);
+  font-size: 0.95rem;
+  text-align: right;
+  background: var(--cor-tela);
+  border: var(--borda);
+  border-radius: 10px;
+}
+
+.botao {
+  padding: 15px 24px;
+  font-size: 1rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--cor-texto);
+  text-decoration: none;
+  background: linear-gradient(to bottom, var(--cor-principal) 0 50%, #fff 50% 100%);
+  border: var(--borda);
+  border-radius: 999px;
+  box-shadow: var(--sombra-pequena);
+  text-shadow: 0 0 4px #fff, 0 0 4px #fff;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.botao:hover {
+  transform: scale(1.02);
+}

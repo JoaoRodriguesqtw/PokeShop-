@@ -1,0 +1,40 @@
+.titulo {
+  display: inline-block;
+  padding: 14px 22px;
+  font-size: 1.4rem;
+  color: #fff;
+  background: var(--cor-principal);
+  border: var(--borda);
+  border-radius: 12px;
+  box-shadow: var(--sombra-pequena);
+}
+
+.subtitulo {
+  margin: 16px 0 28px;
+  font-weight: 700;
+  color: var(--cor-texto-suave);
+}
+
+.aviso {
+  padding: 32px;
+  font-family: var(--fonte-titulo);
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--cor-texto);
+}
+
+.erro {
+  padding: 12px 16px;
+  font-weight: 700;
+  color: var(--cor-erro-texto);
+  background: var(--cor-erro-fundo);
+  border: var(--borda);
+  border-left: 10px solid var(--cor-erro-borda);
+  border-radius: 10px;
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}

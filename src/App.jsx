@@ -1,142 +1,142 @@
-
-// documento formatado com o prettier
-
-import { useEffect, useState } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Catalogo from "./pages/Catalogo";
-import Historico from "./pages/Historico";
-import Home from "./pages/Home";
-import Notfound from "./pages/Notfound";
-import Obrigado from "./pages/Obrigado";
-import Pagamentos from "./pages/Pagamentos";
-import { calcularTotal, contarUnidades } from "./utils/format";
+import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styles from "./App.module.css";
 
+import Navbar from "./components/Navbar";
+import Rodape from "./components/Rodape";
+
+import Home from "./pages/Home";
+import Catalogo from "./pages/Catalogo";
+import Detalhe from "./pages/Detalhe";
+import Carrinho from "./pages/Carrinho";
+import Pagamento from "./pages/Pagamento";
+import Obrigado from "./pages/Obrigado";
+import Historico from "./pages/Historico";
+import NaoEncontrada from "./pages/NaoEncontrada";
+
 function App() {
-  // Todo o estado do app fica aqui e é passado para as páginas por props.
-  // useState lê o localStorage só na primeira vez que o app abre
+  // estado compartilhado: mora no App porque várias páginas precisam dele
   const [carrinho, setCarrinho] = useState(() => {
-    const salvo = localStorage.getItem("pokeshop:carrinho");
+    const salvo = localStorage.getItem("carrinho");
     return salvo ? JSON.parse(salvo) : [];
   });
 
   const [historico, setHistorico] = useState(() => {
-    const salvo = localStorage.getItem("pokeshop:historico");
+    const salvo = localStorage.getItem("historico");
     return salvo ? JSON.parse(salvo) : [];
   });
 
-  // sempre que o carrinho ou o histórico mudam, salva de novo
+  // salva toda vez que o estado mudar
   useEffect(() => {
-    localStorage.setItem("pokeshop:carrinho", JSON.stringify(carrinho));
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
   }, [carrinho]);
 
   useEffect(() => {
-    localStorage.setItem("pokeshop:historico", JSON.stringify(historico));
+    localStorage.setItem("historico", JSON.stringify(historico));
   }, [historico]);
 
-  // CREATE: adiciona o Pokémon ou soma 1 se ele já estiver no carrinho
-  function adicionarAoCarrinho(pokemon) {
-    setCarrinho((atual) => {
-      const jaExiste = atual.some((item) => item.id === pokemon.id);
+  // CREATE: adiciona o pokémon (se já estiver no carrinho, soma 1 na quantidade)
+  const adicionar = (pokemon) => {
+    const existe = carrinho.find((item) => item.pokemonId === pokemon.id);
 
-      if (jaExiste) {
-        return atual.map((item) =>
-          item.id === pokemon.id
-            ? { ...item, quantidade: Math.min(item.quantidade + 1, 99) }
-            : item,
-        );
-      }
-
-      return [
-        ...atual,
+    if (existe) {
+      setCarrinho(
+        carrinho.map((item) =>
+          item.pokemonId === pokemon.id
+            ? { ...item, quantidade: item.quantidade + 1 }
+            : item
+        )
+      );
+    } else {
+      setCarrinho([
+        ...carrinho,
         {
-          id: pokemon.id,
+          id: crypto.randomUUID(),
+          pokemonId: pokemon.id,
           nome: pokemon.nome,
           imagem: pokemon.imagem,
           preco: pokemon.preco,
-          apelido: "",
           quantidade: 1,
         },
-      ];
-    });
-  }
+      ]);
+    }
+  };
 
-  // UPDATE: troca só os campos recebidos em "alteracoes"
-  function editarItem(id, alteracoes) {
-    setCarrinho((atual) =>
-      atual.map((item) => (item.id === id ? { ...item, ...alteracoes } : item)),
+  // UPDATE: troca a quantidade de um item
+  const editar = (id, quantidade) => {
+    setCarrinho(
+      carrinho.map((item) =>
+        item.id === id ? { ...item, quantidade: quantidade } : item
+      )
     );
+  };
+
+  // DELETE: tira o item do carrinho
+  const remover = (id) => {
+    setCarrinho(carrinho.filter((item) => item.id !== id));
+  };
+
+  let total = 0;
+  let quantidadeItens = 0;
+
+  for (let i = 0; i < carrinho.length; i++) {
+    total += carrinho[i].preco * carrinho[i].quantidade;
+    quantidadeItens += carrinho[i].quantidade;
   }
 
-  // DELETE
-  function removerItem(id) {
-    setCarrinho((atual) => atual.filter((item) => item.id !== id));
-  }
-
-  // Transforma o carrinho em um pedido, salva no histórico e esvazia o carrinho.
-  function finalizarCompra(cliente) {
-    const pedido = {
-      id: Date.now().toString(36).toUpperCase(),
-      data: new Date().toISOString(),
-      cliente: cliente.nome,
-      email: cliente.email,
-      metodo: cliente.metodo,
+  // finaliza a compra: guarda no histórico e esvazia o carrinho
+  const finalizar = (dados) => {
+    const compra = {
+      id: crypto.randomUUID(),
+      data: new Date().toLocaleString(),
+      cliente: dados.nome,
+      email: dados.email,
+      pagamento: dados.pagamento,
       itens: carrinho,
-      total: calcularTotal(carrinho),
+      total: total,
     };
 
-    setHistorico((atual) => [pedido, ...atual]);
+    setHistorico([compra, ...historico]);
     setCarrinho([]);
-    return pedido.id;
-  }
-
-  function removerPedido(id) {
-    setHistorico((atual) => atual.filter((pedido) => pedido.id !== id));
-  }
+  };
 
   return (
     <BrowserRouter>
-      <Navbar totalItens={contarUnidades(carrinho)} />
+      <Navbar quantidade={quantidadeItens} />
 
-      <main className={styles.principal}>
+      <main className={styles.conteudo}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Navigate to="/" replace />} />
+          <Route path="/catalogo" element={<Catalogo aoAdicionar={adicionar} />} />
+          <Route path="/pokemon/:id" element={<Detalhe aoAdicionar={adicionar} />} />
           <Route
-            path="/catalogo"
+            path="/carrinho"
             element={
-              <Catalogo
+              <Carrinho
                 carrinho={carrinho}
-                onAdicionar={adicionarAoCarrinho}
-                onEditar={editarItem}
-                onRemover={removerItem}
+                total={total}
+                aoEditar={editar}
+                aoRemover={remover}
               />
             }
           />
           <Route
             path="/pagamento"
             element={
-              <Pagamentos carrinho={carrinho} onFinalizar={finalizarCompra} />
-            }
-          />
-          <Route
-            path="/obrigado"
-            element={<Obrigado historico={historico} />}
-          />
-          <Route
-            path="/historico"
-            element={
-              <Historico
-                historico={historico}
-                onRemoverPedido={removerPedido}
-                onLimpar={() => setHistorico([])}
+              <Pagamento
+                carrinho={carrinho}
+                total={total}
+                aoFinalizar={finalizar}
               />
             }
           />
-          <Route path="*" element={<Notfound />} />
+          <Route path="/obrigado" element={<Obrigado compra={historico[0]} />} />
+          <Route path="/historico" element={<Historico historico={historico} />} />
+          <Route path="*" element={<NaoEncontrada />} />
         </Routes>
       </main>
+
+      <Rodape />
     </BrowserRouter>
   );
 }
