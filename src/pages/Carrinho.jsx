@@ -33,8 +33,6 @@ function Carrinho(props) {
   };
 
   const remover = (id) => {
-    if (!confirm("Remover este Pokémon do carrinho?")) return;
-
     props.aoRemover(id);
 
     if (editando === id) {
