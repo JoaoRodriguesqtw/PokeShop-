@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { descobrirGeracao, descobrirClassificacao } from "../../utils/filtros";
 import styles from "./Detalhe.module.css";
 
 function Detalhe(props) {
@@ -31,7 +32,7 @@ function Detalhe(props) {
           tipos: dados.types.map((item) => item.type.name),
           altura: dados.height / 10,
           peso: dados.weight / 10,
-          preco: dados.base_experience, // preço fictício
+          preco: dados.base_experience || 50, // preço fictício (50 se a API não mandar)
         });
       } catch {
         setErro("Pokémon não encontrado.");
@@ -42,6 +43,10 @@ function Detalhe(props) {
 
     buscarPokemon();
   }, [id]);
+
+  // só dá para descobrir depois que o Pokémon chegou da API
+  const geracao = pokemon ? descobrirGeracao(pokemon.id) : undefined;
+  const classificacao = pokemon ? descobrirClassificacao(pokemon.id) : undefined;
 
   return (
     <section>
@@ -67,6 +72,21 @@ function Detalhe(props) {
                   {tipo}
                 </span>
               ))}
+            </div>
+
+            <div className={styles.ficha}>
+              {geracao && (
+                <p>
+                  <span className={styles.rotulo}>Região</span>
+                  {geracao.regiao} ({geracao.id}ª geração)
+                </p>
+              )}
+              <p>
+                <span className={styles.rotulo}>Classificação</span>
+                <span className={`${styles.classificacao} ${styles[classificacao.id]}`}>
+                  {classificacao.nome}
+                </span>
+              </p>
             </div>
 
             <p>Altura: {pokemon.altura} m</p>

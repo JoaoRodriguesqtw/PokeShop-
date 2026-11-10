@@ -1,0 +1,167 @@
+.titulo {
+  display: inline-block;
+  padding: 14px 22px;
+  font-size: 1.4rem;
+  color: #fff;
+  background: var(--cor-principal);
+  border: var(--borda);
+  border-radius: 12px;
+  box-shadow: var(--sombra-pequena);
+}
+
+.subtitulo {
+  margin: 16px 0 28px;
+  font-weight: 700;
+  color: var(--cor-texto-suave);
+}
+
+.aviso {
+  padding: 32px;
+  font-family: var(--fonte-titulo);
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--cor-texto);
+}
+
+.erro {
+  padding: 12px 16px;
+  font-weight: 700;
+  color: var(--cor-erro-texto);
+  background: var(--cor-erro-fundo);
+  border: var(--borda);
+  border-left: 10px solid var(--cor-erro-borda);
+  border-radius: 10px;
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.filtro {
+  padding: 10px 16px;
+  font-weight: 800;
+  color: var(--cor-texto);
+  background: var(--cor-card);
+  border: var(--borda);
+  border-radius: 999px;
+  box-shadow: var(--sombra-pequena);
+  cursor: pointer;
+}
+
+.filtro:hover {
+  background: var(--cor-destaque);
+}
+
+.filtroAtivo,
+.filtroAtivo:hover {
+  color: #fff;
+  background: var(--cor-secundaria);
+}
+
+.busca {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.campo {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cor-texto);
+  background: var(--cor-card);
+  border: var(--borda);
+  border-radius: 10px;
+  box-shadow: var(--sombra-pequena);
+}
+
+.campo:focus {
+  outline: 3px solid var(--cor-destaque);
+  outline-offset: 2px;
+}
+
+.botaoBuscar,
+.botaoLimpar {
+  padding: 12px 22px;
+  font-weight: 800;
+  border: var(--borda);
+  border-radius: 10px;
+  box-shadow: var(--sombra-pequena);
+  cursor: pointer;
+}
+
+.botaoBuscar {
+  color: #fff;
+  background: var(--cor-secundaria);
+}
+
+.botaoBuscar:hover {
+  background: var(--cor-secundaria-escura);
+}
+
+.botaoLimpar {
+  color: var(--cor-texto);
+  background: var(--cor-card);
+}
+
+.botaoLimpar:hover {
+  background: var(--cor-destaque);
+}
+
+.botaoFiltros {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  font-weight: 800;
+  color: #fff;
+  background: var(--cor-principal);
+  border: var(--borda);
+  border-radius: 10px;
+  box-shadow: var(--sombra-pequena);
+  cursor: pointer;
+}
+
+.botaoFiltros:hover {
+  background: var(--cor-principal-hover);
+}
+
+/* bolinha com quantos filtros estão ativos */
+.contador {
+  min-width: 24px;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  color: var(--cor-texto);
+  background: var(--cor-destaque);
+  border: 2px solid var(--cor-borda);
+  border-radius: 999px;
+}
+
+.ativos {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: -8px 0 20px;
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+}
+
+.removerFiltros {
+  padding: 0;
+  font-weight: 800;
+  color: var(--cor-principal);
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}

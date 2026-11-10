@@ -2,17 +2,17 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styles from "./App.module.css";
 
-import Navbar from "./components/Navbar";
-import Rodape from "./components/Rodape";
+import Navbar from "./components/Navbar/Navbar";
+import Rodape from "./components/Rodape/Rodape";
 
-import Home from "./pages/Home";
-import Catalogo from "./pages/Catalogo";
-import Detalhe from "./pages/Detalhe";
-import Carrinho from "./pages/Carrinho";
-import Pagamento from "./pages/Pagamento";
-import Obrigado from "./pages/Obrigado";
-import Historico from "./pages/Historico";
-import NaoEncontrada from "./pages/NaoEncontrada";
+import Home from "./pages/Home/Home";
+import Catalogo from "./pages/Catalogo/Catalogo";
+import Detalhe from "./pages/Detalhe/Detalhe";
+import Carrinho from "./pages/Carrinho/Carrinho";
+import Pagamento from "./pages/Pagamento/Pagamento";
+import Obrigado from "./pages/Obrigado/Obrigado";
+import Historico from "./pages/Historico/Historico";
+import NaoEncontrada from "./pages/NaoEncontrada/NaoEncontrada";
 
 function App() {
   // estado compartilhado: mora no App porque várias páginas precisam dele

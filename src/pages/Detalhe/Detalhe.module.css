@@ -120,3 +120,56 @@
 .botao:hover {
   transform: scale(1.04);
 }
+
+/* região e classificação */
+.ficha {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 2px dashed var(--cor-borda);
+  border-radius: 10px;
+}
+
+.ficha p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rotulo {
+  min-width: 130px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--cor-texto-suave);
+}
+
+.classificacao {
+  padding: 3px 12px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  border: 2px solid var(--cor-borda);
+  border-radius: 999px;
+}
+
+.lendario {
+  color: var(--cor-texto);
+  background: var(--cor-destaque);
+}
+
+.mitico {
+  color: #fff;
+  background: #a33ea1;
+}
+
+.pseudolendario {
+  color: #fff;
+  background: var(--cor-secundaria);
+}
+
+.padrao {
+  color: var(--cor-texto);
+  background: #fff;
+}
